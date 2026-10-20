@@ -29,7 +29,7 @@ update_favicon() {
            printf "%s" "$text"
         fi
         if echo "$line" | grep -F '[ICON-LINE]' >/dev/null 2>&1; then
-            echo -n "x$line" | sed -E 's/^(.*)\<link .*$/\1/' >> "$file"
+            echo -n "x$line" | sed 's/^\(.*\)<link .*$/\1/' >> "$file"
             echo -n "<link rel=\"icon\" href=\"data:image/vnd.microsoft.icon;base64," >> "$file"
             base64 favicon.ico | while read -r line; do echo -n "$line"; done >> "$file"
             echo "\" />"  >> "$file"
